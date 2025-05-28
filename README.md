@@ -1,6 +1,6 @@
 # A mechanism for enhancing static sites with server-side-ish dynamic behavior
 
-I've been maintaining [justin.searls.co](https://justin.searls.co) as a static site since 2020 as a [Hugo](https://gohugo.io) site. While I generally love hosting a bunch of static files without any real server costs (thanks to [Netlify](https://www.netlify.com)'s generous free tier), there are times where I really want just a _wee_ bit of dynamic behavior.
+I've been maintaining [justin.searls.co](https://justin.searls.co) as a static site since 2020 using [Hugo](https://gohugo.io). While I generally love hosting a bunch of static files without any real server costs (thanks to [Netlify](https://www.netlify.com)'s generous free tier), there are times where I really want just a _wee_ bit of dynamic behavior.
 
 So, thanks to GitHub Actions, I've added that dynamic behavior like sprinkles on top of the sundae. They run on a cron schedule (every X minutes) and after each push to the default branch.
 
