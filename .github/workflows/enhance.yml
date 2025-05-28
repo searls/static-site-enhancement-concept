@@ -1,0 +1,46 @@
+name: enhance
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '*/15 * * * *'
+
+jobs:
+  enhance:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor != 'github-actions[bot]' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+
+      - name: Check content enhancements
+        id: enhance_check
+        run: ./script/enhance_content check
+        shell: bash
+        continue-on-error: true
+        env:
+          DE_BUG: '1'
+
+      - name: Run enhancements if needed
+        if: steps.enhance_check.outcome == 'success'
+        run: ./script/enhance_content run
+        shell: bash
+        env:
+          DE_BUG: '1'
+
+      - name: Commit & push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          default_author: github_actions
+          message: "Enhance my content! [skip actions]"

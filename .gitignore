@@ -1,0 +1,4 @@
+# Stuff github actions is liable to commit .github/workflows/enhance.yml
+/.bundle
+/vendor
+

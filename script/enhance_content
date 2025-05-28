@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+require "bundler/setup"
+require_relative "ext/time"
+require_relative "lib/cli"
+require_relative "lib/commands/add_cards_to_takes"
+require_relative "lib/commands/advance_publication_date"
+require_relative "lib/commands/update_publish_date_cache"
+require_relative "lib/content"
+require_relative "lib/de_bug"
+require_relative "lib/enhancement_config"
+require_relative "lib/quoted_string"
+require_relative "lib/scan"
+
+cli = Cli.new
+case ARGV[0]&.downcase
+when "check"
+  cli.check
+else
+  cli.run
+end
